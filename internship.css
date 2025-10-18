@@ -1,0 +1,220 @@
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        left: -20px;
+    }
+
+    100% {
+        opacity: 1;
+        left: 40px;
+    }
+}
+
+@keyframes slideInAnimation {
+    0% {
+        width: 0%;
+        opacity: 0;
+        height: 30%;
+    }
+
+    100% {
+        width: 60%;
+        opacity: 1;
+        height: 30%;
+    }
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* -----------------------------------
+   HEADER + NAVIGATION + LOGO
+------------------------------------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 30px;
+    background-blend-mode: darken;
+    background-attachment: fixed;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+    text-shadow: 2px 2px 2px black;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+}
+
+li a {
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-bottom: 2px solid white;
+    color: ghostwhite;
+}
+
+li a:hover {
+    border-bottom: 5px solid aliceblue;
+    border-radius: 5px;
+    color: aliceblue;
+    transition: 0.2s linear;
+}
+
+/* -----------------------------------
+   LOGO STYLING
+------------------------------------- */
+.Logo {
+    max-width: 200px;
+    height: auto;
+}
+
+/* -----------------------------------
+   WELCOME SECTION
+------------------------------------- */
+.WelcomePop {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-align: center;
+    color: antiquewhite;
+    text-shadow: 2px 2px black;
+    padding: 20px;
+}
+
+/* -----------------------------------
+   MAIN BACKGROUND
+------------------------------------- */
+.main {
+    background-image: url("assets/images/desert food.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* -----------------------------------
+   INPUTS & BUTTONS
+------------------------------------- */
+input {
+    background: transparent;
+    margin: 15px 25px;
+    padding: 5px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 1rem;
+    border: 2px solid #3b3232e5;
+    font-weight: bold;
+}
+
+button {
+    font-family: 'Roboto Slab', serif;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* -----------------------------------
+   CARAMEL INTRO
+------------------------------------- */
+.CaramelIntro {
+    margin: 0 auto;
+    padding: 20px;
+    background-blend-mode: color-burn;
+    border-radius: 40px;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* -----------------------------------
+   DIRECT BUTTONS
+------------------------------------- */
+.Direct {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+
+}
+
+/* -----------------------------------
+   HAMBURGER MENU (Mobile Placeholder)
+------------------------------------- */
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* -----------------------------------
+   USER DISPLAY
+------------------------------------- */
+.user-display {
+    background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 28px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px #66339933;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    font-size: 1.1em;
+    border: 2px solid #fff;
+    transition: background 0.3s, color 0.3s;
+}
+
+.user-display:hover {
+    background: linear-gradient(90deg, #663399 0%, #e0c3fc 100%);
+    color: #663399;
+}
+
+/* -----------------------------------
+   RESPONSIVE MEDIA QUERIES
+------------------------------------- */
+@media (max-width: 768px) {
+    .WelcomePop {
+        font-size: 2.5rem;
+    }
+
+    .CaramelIntro {
+        font-size: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Direct {
+        flex-direction: column;
+    }
+
+    .Logo {
+        margin: 0 auto;
+        display: block;
+    }
+}

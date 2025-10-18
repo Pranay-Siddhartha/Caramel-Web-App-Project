@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Caramel</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab:400,700|Pacifico' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: linear-gradient(135deg, #f8e8ff 0%, #ffe5e0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px #66339922;
+            min-width: 320px;
+        }
+
+        .login-container h2 {
+            font-family: 'Pacifico', cursive;
+            color: #663399;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #663399;
+            font-weight: bold;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #e0c3fc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .login-container button:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.04);
+        }
+
+        #login-error {
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login to Caramel</h2>
+        <form id="login-form">
+            <div id="login-error"></div>
+            <label for="username">Username</label>
+            <input type="text" id="username" required autocomplete="username">
+            <label for="password">Password</label>
+            <input type="password" id="password" required autocomplete="current-password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            errorDiv.style.display = "none";
+            errorDiv.textContent = "";
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    localStorage.setItem('username', username);
+                    window.location.href = "index.html";
+                } else {
+                    errorDiv.textContent = "Invalid credentials";
+                    errorDiv.style.display = "block";
+                }
+            } catch (err) {
+                errorDiv.textContent = "Server error. Please try again.";
+                errorDiv.style.display = "block";
+            }
+        });
+    </script>
+</body>
+
+</html>

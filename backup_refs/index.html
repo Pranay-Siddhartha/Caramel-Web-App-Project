@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Caramel</title>
+    <link rel="icon" href="assets/images/Brand Logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab:400,700|Pacifico' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f8e8ff 0%, #ffe5e0 100%);
+        }
+
+        .header-bar {
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 30px 40px 0 30px;
+            z-index: 20;
+        }
+
+        .header-bar .logo {
+            max-width: 220px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px #66339955);
+            animation: floatLogo 3s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-bar .nav-btns {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-bar .nav-btn,
+        .login-btn {
+            padding: 12px 36px;
+            font-size: 1.1em;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #66339933;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .header-bar .nav-btn:hover,
+        .login-btn:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.07);
+            box-shadow: 0 4px 16px #66339955;
+        }
+
+        .user-display {
+
+            font-weight: bold;
+            margin-left: 8px;
+            color: #663399;
+
+        }
+
+        @media (max-width: 767px) {
+            .header-bar {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0 0 0;
+            }
+
+            .header-bar .nav-btn,
+            .login-btn {
+                margin-top: 16px;
+                width: 80vw;
+                font-size: 1.2em;
+            }
+        }
+
+        .main {
+            max-width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #66339999 0%, #e0c3fc55 100%);
+            z-index: 1;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .WelcomePop {
+            position: relative;
+            z-index: 2;
+        }
+
+        .WelcomePop p {
+            font-size: 6em;
+            margin: 54px 0 70px 0;
+            color: #fff;
+            text-shadow: 0 4px 24px #663399, 0 2px 8px #e0c3fc;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive;
+            letter-spacing: 2px;
+        }
+
+        .Direct {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .Direct button {
+            padding: 28px 70px;
+            font-size: 2.2em;
+            border: none;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #66339933;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .Direct button:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 4px 16px #66339955;
+        }
+
+        .parallax {
+            min-height: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 60px 20px;
+            color: #3b3232;
+            border-radius: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 24px #66339922;
+            will-change: background-position;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #fff8 0%, #e0c3fc33 100%);
+            z-index: 0;
+            border-radius: 40px;
+        }
+
+        .CaramelIntro {
+            background: linear-gradient(120deg, #e0c3fc 0%, #f8e8ff 100%);
+            border: 2px solid #663399;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            border-radius: 40px;
+            box-shadow: 0 2px 16px #e0c3fc55;
+            position: relative;
+            z-index: 1;
+        }
+
+        .CaramelIntro img {
+            border-radius: 200px;
+            max-width: 90%;
+            height: auto;
+            box-shadow: 0 2px 16px #66339933;
+            transition: transform 0.3s;
+        }
+
+        .CaramelIntro img:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .CaramelIntro p {
+            font-size: 1.3em;
+            text-align: center;
+            color: #663399;
+            font-weight: 500;
+        }
+
+        .CaramelIntro a {
+            font-weight: lighter;
+            color: #3b3232;
+        }
+
+        .footer {
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            padding: 60px 20px 30px 20px;
+            text-align: center;
+            border-radius: 40px 40px 0 0;
+            box-shadow: 0 -2px 16px #66339933;
+            margin-top: 60px;
+        }
+
+        .footer img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            filter: drop-shadow(0 2px 8px #e0c3fc);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-social {
+            margin: 24px 0 0 0;
+        }
+
+        .footer-social a {
+            color: #fff;
+            margin: 0 12px;
+            font-size: 2em;
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover {
+            color: #e0c3fc;
+        }
+
+        @media (min-width: 768px) {
+            .CaramelIntro {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+
+            .CaramelIntro p {
+                flex: 1;
+                padding: 60px;
+            }
+
+            .CaramelIntro img {
+                flex: 1;
+                max-width: 300px;
+            }
+
+            .footer-container {
+                flex-direction: row;
+                padding: 0 100px;
+            }
+
+            .Direct button {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .CaramelIntro p {
+                padding: 20px;
+            }
+
+            .parallax {
+                min-height: 250px;
+            }
+
+            .Direct button {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bar">
+        <a href="index.html">
+        <img src="assets/images/Caramel-removebg-preview.png" alt="Caramel Logo" class="logo">
+        </a>
+        <div class="nav-btns">
+            <a href="login.html" id="login-btn" class="nav-btn">Login</a>
+            <span id="user-display" class="user-display"></span>
+            <button id="logout-btn" class="nav-btn" style="display:none;">Logout</button>
+        </div>
+    </div>
+    <div class="main"
+        style="background-image: url('assets/images/desert food.jpg'); min-height: 100vh; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position:relative; border-radius: 0 0 40px 40px;">
+        <div class="hero-overlay"></div>
+        <div class="WelcomePop" data-aos="fade-down" data-aos-delay="200"
+            style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="font-size: 5em; margin: 0 0 64px 0; color: #fff; text-shadow: 0 4px 24px #663399, 0 2px 8px #e0c3fc; font-weight: bold; text-align: center;">
+                More than a popsicle.</p>
+            <div class="Direct" data-aos="fade-up" data-aos-delay="400" style="margin-top: 0;">
+                <button type="button" onclick="window.location.href='orders.html'">Order Now</button>
+                <button type="button" onclick="window.location.href='dineout.html'">Dine Out</button>
+                <button type="button" onclick="window.location.href='chatbot.html'">Caramel taste finder</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="parallax" style="background-image: url('assets/images/dessert food2.jpg');">
+        <h1 class="CaramelIntro">
+            <p data-aos="fade-left" data-aos-delay="600">
+                About Caramel.<br><br>
+                <a>Caramel is a class-leading bakery producer providing a diverse range of sweet delicacies renowned by
+                    the best cuisines around the world.</a>
+            </p>
+            <img src="assets/images/Caramel.png" alt="Caramel" data-aos="fade-right" data-aos-delay="800">
+        </h1>
+    </section>
+
+    <section class="parallax" style="background-image: url('assets/images/desertbake.jpg');">
+        <h1 class="CaramelIntro">
+            <p data-aos="fade-left" data-aos-delay="700">
+                Masters Behind the Art<br><br>
+                <a>Our experienced handpicked bakers have continued to deliver the perfect taste with their years of
+                    relentless perseverance and unwavered skill here at Caramel.</a>
+            </p>
+            <img src="assets/images/bakers.jpg" alt="Bakers" data-aos="fade-right" data-aos-delay="900">
+        </h1>
+    </section>
+
+    <section class="parallax" style="background-image: url('assets/images/donuts.webp');">
+        <h1 class="CaramelIntro">
+            <p data-aos="fade-left" data-aos-delay="800">
+                Caramel. Around the World<br><br>
+                <a>Originating from Russia and serving over 72 countries, Caramel was able to establish itself as a
+                    global-level flagship bakery producer revered by people from different ethnicities.</a>
+            </p>
+            <img src="assets/images/WorldMap purp.png" alt="World Map" data-aos="fade-right" data-aos-delay="1000">
+        </h1>
+    </section>
+
+    <div class="footer">
+        <div class="footer-container">
+            <img src="assets/images/Brand Logo.png" alt="Brand Logo" width="200px">
+            <img src="assets/images/Caramel-removebg-preview.png" alt="Caramel Text Logo" width="200px">
+        </div>
+        <div class="footer-social">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p style="margin-top:24px;">Caramel and Caramel logo are registered trademarks of Caramel & Co.</p>
+        <p>Established 2001. All rights reserved.</p>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 400
+        });
+
+        // Smooth parallax effect for all .parallax sections
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateParallax() {
+            var parallaxEls = document.querySelectorAll('.parallax');
+            parallaxEls.forEach(function (el) {
+                var speed = 0.4;
+                var offset = el.offsetTop;
+                var targetY = (lastScrollY - offset) * speed;
+                var currentY = parseFloat(el.dataset.bgY) || 0;
+                var newY = currentY + (targetY - currentY) * 0.15;
+                el.style.backgroundPosition = 'center ' + newY + 'px';
+                el.dataset.bgY = newY;
+            });
+            ticking = false;
+        }
+
+        function onScrollOrResize() {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        window.addEventListener('scroll', onScrollOrResize);
+        window.addEventListener('resize', onScrollOrResize);
+        document.addEventListener('DOMContentLoaded', updateParallax);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.getElementById('login-btn');
+            const userDisplay = document.getElementById('user-display');
+            const logoutBtn = document.getElementById('logout-btn');
+            const username = localStorage.getItem('username');
+            if (username) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userDisplay) {
+                    userDisplay.textContent = "Hi, " + username;
+                    userDisplay.style.display = 'inline-block';
+                }
+                if (logoutBtn) logoutBtn.style.display = 'inline-block';
+            } else {
+                if (userDisplay) userDisplay.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (loginBtn) loginBtn.style.display = 'inline-block';
+            }
+            if (logoutBtn) {
+                logoutBtn.onclick = function () {
+                    localStorage.removeItem('username');
+                    window.location.reload();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

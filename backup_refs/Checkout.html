@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | Caramel</title>
+    <link rel="icon" href="assets/images/Brand Logo.png" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: linear-gradient(120deg, #f8e8ff 0%, #ffe5e0 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .header-bar {
+            width: 100vw;
+            max-width: 100vw;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px 0 30px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 16px #e0c3fc33;
+        }
+
+        .header-bar .logo {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px #66339955);
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px 30px;
+            font-size: 1em;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #66339933;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.07);
+        }
+
+        .user-display {
+            font-weight: bold;
+            margin-left: 8px;
+            color: #663399;
+        }
+
+        .checkout-container {
+            background: #fff;
+            max-width: 500px;
+            margin: 60px auto 0 auto;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px #e0c3fc55;
+            padding: 36px 28px 28px 28px;
+        }
+
+        .checkout-title {
+            color: #663399;
+            font-size: 2.2em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .cart-summary {
+            margin-bottom: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e0c3fc;
+            padding-bottom: 8px;
+        }
+
+        .cart-item-name {
+            color: #663399;
+            font-weight: bold;
+        }
+
+        .cart-item-qty {
+            color: #3b3232;
+            font-size: 0.95em;
+        }
+
+        .cart-item-total {
+            color: #3b3232;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            text-align: right;
+            color: #663399;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+
+        .checkout-form label {
+            display: block;
+            margin-top: 16px;
+            color: #663399;
+            font-weight: bold;
+        }
+
+        .checkout-form input,
+        .checkout-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #e0c3fc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .checkout-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .checkout-form button:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.04);
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bar">
+        <img src="assets/images/Caramel-removebg-preview.png" alt="Caramel Logo" class="logo">
+        <div class="nav-btns">
+            <a href="login.html" id="login-btn" class="nav-btn">Login</a>
+            <span id="user-display" class="user-display"></span>
+            <button id="logout-btn" class="nav-btn" style="display:none;">Logout</button>
+        </div>
+    </div>
+    <div class="checkout-container">
+        <div class="checkout-title">Checkout</div>
+        <div class="cart-summary" id="cart-summary"></div>
+        <form class="checkout-form" id="checkout-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+            <label for="address">Address</label>
+            <textarea id="address" rows="3" required></textarea>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" required pattern="[0-9\-+\s()]{7,}">
+            <button type="submit">Place Order</button>
+        </form>
+        <div class="success-message" id="success-message" style="display:none;">
+            Thank you for your order!<br>
+            <a href="index.html" id="home-btn"
+                style="display:inline-block;margin-top:18px;padding:10px 32px;background:linear-gradient(90deg,#663399 60%,#e0c3fc 100%);color:#fff;border:none;border-radius:20px;font-size:1.1em;font-weight:bold;text-decoration:none;transition:background 0.3s,transform 0.2s;">Home</a>
+        </div>
+    </div>
+    <script>
+        // Header login/logout logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.getElementById('login-btn');
+            const userDisplay = document.getElementById('user-display');
+            const logoutBtn = document.getElementById('logout-btn');
+            const username = localStorage.getItem('username');
+            if (username) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userDisplay) {
+                    userDisplay.textContent = "Hi, " + username;
+                    userDisplay.style.display = 'inline-block';
+                    userDisplay.style.color = '#663399';
+                }
+                if (logoutBtn) logoutBtn.style.display = 'inline-block';
+            } else {
+                if (userDisplay) userDisplay.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (loginBtn) loginBtn.style.display = 'inline-block';
+            }
+            if (logoutBtn) {
+                logoutBtn.onclick = function () {
+                    localStorage.removeItem('username');
+                    window.location.reload();
+                }
+            }
+        });
+
+        // Render cart summary
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart') || '[]');
+        }
+        function setCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function renderCartSummary() {
+            const cart = getCart();
+            const cartSummary = document.getElementById('cart-summary');
+            if (!cart.length) {
+                cartSummary.innerHTML = "<p style='color:#663399;text-align:center;'>Your cart is empty.</p>";
+                document.getElementById('checkout-form').style.display = 'none';
+                return;
+            }
+            let html = "";
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <span class="cart-item-name">${item.name}</span>
+                            <span class="cart-item-qty"> x${item.qty}</span>
+                        </div>
+                        <div class="cart-item-total">$${(item.price * item.qty).toFixed(2)}</div>
+                    </div>
+                `;
+            });
+            html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
+            cartSummary.innerHTML = html;
+        }
+        renderCartSummary();
+
+        // Checkout form logic with required field check
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            if (!name || !address || !phone) {
+                alert("Please give the required field");
+                return;
+            }
+            // You can send order data to server here if needed
+            setCart([]);
+            renderCartSummary();
+            document.getElementById('checkout-form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
+

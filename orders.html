@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order | Caramel</title>
+    <link rel="icon" href="assets/images/Brand Logo.png" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            background: linear-gradient(120deg, #f8e8ff 0%, #ffe5e0 100%);
+            min-height: 100vh;
+        }
+
+        .header-bar {
+            width: 100vw;
+            max-width: 100vw;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px 0 30px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 16px #e0c3fc33;
+        }
+
+        .header-bar .logo {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px #66339955);
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px 30px;
+            font-size: 1em;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #66339933;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+            transform: scale(1.07);
+        }
+
+        .order-header {
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+            color: #663399;
+            font-size: 3.2em;
+            font-weight: bold;
+            text-shadow: 0 2px 16px #e0c3fc;
+            letter-spacing: 2px;
+        }
+
+        .orders-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px 36px;
+            padding: 40px 10px 80px 10px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .order-card {
+            background: linear-gradient(120deg, #e0c3fc 0%, #f8e8ff 100%);
+            border-radius: 36px;
+            box-shadow: 0 4px 24px #e0c3fc55, 0 1.5px 8px #66339922;
+            padding: 36px 24px 30px 24px;
+            max-width: 320px;
+            min-width: 260px;
+            text-align: center;
+            transition: transform 0.22s cubic-bezier(.4, 2, .6, 1), box-shadow 0.22s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-card:before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #e0c3fc88 60%, transparent 100%);
+            z-index: 0;
+        }
+
+        .order-card:hover {
+            transform: translateY(-10px) scale(1.045);
+            box-shadow: 0 10px 32px #66339933, 0 2px 16px #e0c3fc77;
+        }
+
+        .order-card img {
+            width: 210px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 12px #66339922;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background: #e0c3fc;
+            border: 3px solid #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Special adjustment for assets/images/bakers.jpg to ensure perfect alignment */
+        .order-card img[alt="Baker's Choice Box"] {
+            object-position: center top;
+        }
+
+        .order-title {
+            font-size: 1.35em;
+            color: #663399;
+            margin-bottom: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .order-desc {
+            color: #3b3232;
+            font-size: 1.08em;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .order-price {
+            color: #fff;
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            font-size: 1.15em;
+            font-weight: bold;
+            border-radius: 16px;
+            padding: 7px 18px;
+            display: inline-block;
+            margin-top: 8px;
+            box-shadow: 0 1px 6px #66339922;
+            z-index: 1;
+            position: relative;
+        }
+
+        @media (max-width: 1100px) {
+            .orders-container {
+                gap: 32px 16px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .orders-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 32px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .order-header {
+                font-size: 2em;
+                padding: 36px 10px 10px 10px;
+            }
+
+            .orders-container {
+                padding: 20px 2px 40px 2px;
+            }
+
+            .order-card {
+                max-width: 98vw;
+                min-width: 0;
+                padding: 18px 6px 18px 6px;
+            }
+
+            .order-card img {
+                width: 90vw;
+                max-width: 220px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Place this inside the <body> tag at the top of every page -->
+    <div class="header-bar">
+        <a href="index.html">
+        <img src="assets/images/Caramel-removebg-preview.png" alt="Caramel Logo" class="logo">
+        </a>
+        <div class="nav-btns">
+            <a href="login.html" id="login-btn" class="nav-btn">Login</a>
+            <span id="user-display" class="user-display"></span>
+            <a href="index.html" id="home-btn" class="nav-btn" style="display:inline-block;">Home</a>
+            <button id="logout-btn" class="nav-btn" style="display:none;">Logout</button>
+        </div>
+    </div>
+    <div class="order-header">Order Your Favorites</div>
+    <div class="orders-container">
+        <div class="order-card">
+            <img src="assets/images/desert food.jpg" alt="Classic Caramel Donut">
+            <div class="order-title">Classic Caramel Donut</div>
+            <div class="order-desc">Soft, fluffy donut glazed with our signature caramel sauce.</div>
+            <div class="order-price">$2.99</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/donuts.webp" alt="Assorted Donuts">
+            <div class="order-title">Assorted Donuts</div>
+            <div class="order-desc">A box of 6 assorted donuts with a variety of toppings and fillings.</div>
+            <div class="order-price">$8.99</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/desertbake.jpg" alt="Baker's Special">
+            <div class="order-title">Baker's Special</div>
+            <div class="order-desc">A surprise treat from our master bakers, changes daily!</div>
+            <div class="order-price">$4.50</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/dessert food2.jpg" alt="Sweet Platter">
+            <div class="order-title">Sweet Platter</div>
+            <div class="order-desc">A selection of our best-selling sweets, perfect for sharing.</div>
+            <div class="order-price">$12.00</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/dreamcake.webp" alt="Caramel Dream Cake">
+            <div class="order-title">Caramel Dream Cake</div>
+            <div class="order-desc">Rich, moist cake layered with caramel and topped with a silky caramel glaze.</div>
+            <div class="order-price">$5.99</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/bakers.jpg" alt="Baker's Choice Box">
+            <div class="order-title">Baker's Choice Box</div>
+            <div class="order-desc">A curated box of 8 pastries, handpicked by our bakers for the day.</div>
+            <div class="order-price">$14.99</div>
+        </div>
+        <!-- Additional Locations -->
+        <div class="order-card">
+            <img src="assets/images/Caramel.png" alt="Blueberry Haven">
+            <div class="order-title">Blueberry Haven</div>
+            <div class="order-desc">123 Blueberry Lane, Midtown<br>Open: 7am - 8pm</div>
+            <div class="order-price">Contact: (555) 123-4567</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/Caramel.png" alt="World Map Bakery">
+            <div class="order-title">World Map Bakery</div>
+            <div class="order-desc">456 Globe St, Downtown<br>Open: 8am - 10pm</div>
+            <div class="order-price">Contact: (555) 987-6543</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/Caramel.png" alt="Caramel Express">
+            <div class="order-title">Caramel Express</div>
+            <div class="order-desc">789 Expressway, Riverside<br>Open: 6am - 6pm</div>
+            <div class="order-price">Contact: (555) 246-8101</div>
+        </div>
+        <div class="order-card">
+            <img src="assets/images/Caramel.png" alt="Sunrise Sweets">
+            <div class="order-title">Sunrise Sweets</div>
+            <div class="order-desc">321 Morning Ave, Eastside<br>Open: 5am - 3pm</div>
+            <div class="order-price">Contact: (555) 369-1212</div>
+        </div>
+    </div>
+    <!-- Floating Cart Button -->
+    <button id="cart-btn"
+        style="position:fixed;bottom:32px;right:32px;z-index:1000;background:#663399;border:none;border-radius:50%;width:60px;height:60px;box-shadow:0 4px 16px #66339955;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <img src="assets/images/cart.png" alt="Cart" style="width:32px;height:32px;object-fit:contain;">
+        <span id="cart-count"
+            style="position:absolute;top:8px;right:8px;background:#e0c3fc;color:#663399;border-radius:50%;padding:2px 8px;font-size:0.8em;font-weight:bold;">0</span>
+    </button>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal"
+        style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);z-index:2000;align-items:center;justify-content:center;">
+        <div
+            style="background:#fff;border-radius:24px;max-width:400px;width:90vw;padding:32px 20px;box-shadow:0 4px 32px #66339955;position:relative;">
+            <h2 style="color:#663399;text-align:center;margin-bottom:18px;">Your Cart</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total" style="margin:18px 0;font-weight:bold;color:#663399;text-align:right;"></div>
+            <button id="checkout-btn"
+                style="width:100%;padding:12px;background:linear-gradient(90deg,#663399 60%,#e0c3fc 100%);color:#fff;border:none;border-radius:20px;font-size:1.1em;font-weight:bold;cursor:pointer;margin-top:10px;">Proceed
+                to Checkout</button>
+            <button id="close-cart"
+                style="position:absolute;top:10px;right:18px;background:none;border:none;font-size:1.5em;color:#663399;cursor:pointer;">&times;</button>
+        </div>
+    </div>
+
+    <div id="contact"
+        style="margin-top: 120px; padding: 60px 20px; background: #f8e8ff; border-radius: 36px; box-shadow: 0 2px 16px #e0c3fc33; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+        <h2 style="color: #663399; font-size: 2em; margin-bottom: 18px;">Contact Us</h2>
+        <p style="color: #3b3232; font-size: 1.1em;">Email: info@caramelbakery.com<br>Phone: (555) 123-4567<br>123
+            Caramel Lane, Sweet City</p>
+    </div>
+    <script>
+        // --- Cart Logic ---
+        const products = [
+            { name: "Classic Caramel Donut", price: 2.99, img: "assets/images/desert food.jpg" },
+            { name: "Assorted Donuts", price: 8.99, img: "assets/images/donuts.webp" },
+            { name: "Baker's Special", price: 4.50, img: "assets/images/desertbake.jpg" },
+            { name: "Sweet Platter", price: 12.00, img: "assets/images/dessert food2.jpg" },
+            { name: "Caramel Dream Cake", price: 5.99, img: "assets/images/Caramel.png" },
+            { name: "Baker's Choice Box", price: 14.99, img: "assets/images/bakers.jpg" }
+        ];
+
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart') || '[]');
+        }
+        function setCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        function updateCartCount() {
+            const cart = getCart();
+            document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+        function addToCart(product) {
+            let cart = getCart();
+            const idx = cart.findIndex(item => item.name === product.name);
+            if (idx > -1) {
+                cart[idx].qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            setCart(cart);
+            updateCartCount();
+        }
+        function renderCartModal() {
+            const cart = getCart();
+            const cartItemsDiv = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = "<p style='color:#663399;text-align:center;'>Your cart is empty.</p>";
+                document.getElementById('cart-total').textContent = "";
+                document.getElementById('checkout-btn').disabled = true;
+                return;
+            }
+            let html = "";
+            let total = 0;
+            cart.forEach((item, i) => {
+                total += item.price * item.qty;
+                html += `
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                        <div>
+                            <span style="color:#663399;font-weight:bold;">${item.name}</span>
+                            <span style="color:#3b3232;font-size:0.95em;"> x${item.qty}</span>
+                        </div>
+                        <div>
+                            <button onclick="removeFromCart(${i})" style="background:none;border:none;color:#c0392b;font-size:1.2em;cursor:pointer;">&minus;</button>
+                            <span style="margin:0 8px;">$${(item.price * item.qty).toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            cartItemsDiv.innerHTML = html;
+            document.getElementById('cart-total').textContent = "Total: $" + total.toFixed(2);
+            document.getElementById('checkout-btn').disabled = false;
+        }
+        function removeFromCart(idx) {
+            let cart = getCart();
+            if (cart[idx].qty > 1) {
+                cart[idx].qty -= 1;
+            } else {
+                cart.splice(idx, 1);
+            }
+            setCart(cart);
+            renderCartModal();
+            updateCartCount();
+        }
+        window.removeFromCart = removeFromCart; // Make available to inline onclick
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add "Add to Cart" buttons to product cards
+            const orderCards = document.querySelectorAll('.order-card');
+            orderCards.forEach((card, i) => {
+                if (i < products.length) { // Only for products, not locations
+                    const btn = document.createElement('button');
+                    btn.textContent = "Add to Cart";
+                    btn.style = "margin-top:12px;width:100%;padding:10px;background:linear-gradient(90deg,#663399 60%,#e0c3fc 100%);color:#fff;border:none;border-radius:16px;font-size:1em;font-weight:bold;cursor:pointer;transition:background 0.3s;";
+                    btn.onmouseover = function () { btn.style.background = "linear-gradient(90deg,#e0c3fc 0%,#663399 100%)"; };
+                    btn.onmouseout = function () { btn.style.background = "linear-gradient(90deg,#663399 60%,#e0c3fc 100%)"; };
+                    btn.onclick = function () { addToCart(products[i]); };
+                    card.appendChild(btn);
+                }
+            });
+
+            // Cart button logic
+            document.getElementById('cart-btn').onclick = function () {
+                document.getElementById('cart-modal').style.display = 'flex';
+                renderCartModal();
+            };
+            document.getElementById('close-cart').onclick = function () {
+                document.getElementById('cart-modal').style.display = 'none';
+            };
+            document.getElementById('checkout-btn').onclick = function () {
+                window.location.href = "checkout.html";
+            };
+
+            updateCartCount();
+        });
+
+        // --- Existing login/logout logic ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.getElementById('login-btn');
+            const userDisplay = document.getElementById('user-display');
+            const logoutBtn = document.getElementById('logout-btn');
+            const homeBtn = document.getElementById('home-btn');
+            const username = localStorage.getItem('username');
+            if (username) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userDisplay) {
+                    userDisplay.textContent = "Hi, " + username;
+                    userDisplay.style.display = 'inline-block';
+                    userDisplay.style.color = '#663399';
+                }
+                if (logoutBtn) logoutBtn.style.display = 'inline-block';
+            } else {
+                if (userDisplay) userDisplay.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (loginBtn) loginBtn.style.display = 'inline-block';
+            }
+            if (logoutBtn) {
+                logoutBtn.onclick = function () {
+                    localStorage.removeItem('username');
+                    window.location.reload();
+                }
+            }
+            // Home button is always visible, no extra logic needed
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

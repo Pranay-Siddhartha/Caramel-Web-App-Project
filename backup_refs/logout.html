@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Logged Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #e0c3fc;
+        }
+
+        .logout-message {
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 2px 16px #66339933;
+            text-align: center;
+        }
+
+        .logout-message a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #663399;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logout-message">
+        <h2>You have been logged out.</h2>
+        <a href="index.html">Return to Home</a>
+    </div>
+    <script>
+        localStorage.removeItem('username');
+    </script>
+</body>
+
+</html>

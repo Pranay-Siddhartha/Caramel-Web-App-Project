@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dine Out | Caramel</title>
+    <link rel="icon" href="assets/images/Brand Logo.png" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f8e8ff 0%, #ffe5e0 100%);
+        }
+
+        .dine-header {
+            text-align: center;
+            padding: 40px 20px 10px 20px;
+            color: #663399;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 2px 8px #e0c3fc;
+        }
+
+        .locations-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 30px 10px 60px 10px;
+        }
+
+        .location-card {
+            background: linear-gradient(120deg, #e0c3fc 0%, #f8e8ff 100%);
+            border-radius: 30px;
+            box-shadow: 0 2px 16px #e0c3fc55;
+            padding: 30px 20px;
+            max-width: 340px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .location-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 24px #66339933;
+        }
+
+        .location-card img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px #66339922;
+        }
+
+        .location-title {
+            font-size: 1.4em;
+            color: #663399;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .location-desc {
+            color: #3b3232;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .booking-form {
+            margin-top: 20px;
+            background: #fff8;
+            border-radius: 20px;
+            padding: 18px 10px 10px 10px;
+            box-shadow: 0 2px 8px #e0c3fc55;
+        }
+
+        .booking-form label {
+            display: block;
+            margin: 10px 0 4px 0;
+            color: #663399;
+            font-weight: bold;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .booking-form button {
+            background: linear-gradient(90deg, #663399 60%, #e0c3fc 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.3s;
+        }
+
+        .booking-form button:hover {
+            background: linear-gradient(90deg, #e0c3fc 0%, #663399 100%);
+        }
+
+        .booking-success {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .locations-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="position:fixed;top:16px;right:16px;z-index:1000;display:flex;gap:12px;align-items:center;background:#fff;border-radius:28px;box-shadow:0 2px 12px #66339922;padding:8px 18px;">
+        <a href="index.html"
+            style="order:1;padding:10px 32px;background:linear-gradient(90deg,#663399 60%,#e0c3fc 100%);color:#fff;border:none;border-radius:20px;font-size:1.1em;font-weight:bold;text-decoration:none;box-shadow:0 2px 8px #66339933;transition:background 0.3s,transform 0.2s;">Home</a>
+        <button id="logout-btn-fixed"
+            style="order:2;padding:10px 32px;background:linear-gradient(90deg,#e0c3fc 0%,#663399 100%);color:#fff;border:none;border-radius:20px;font-size:1.1em;font-weight:bold;box-shadow:0 2px 8px #66339933;cursor:pointer;transition:background 0.3s,transform 0.2s;display:none;">Logout</button>
+    </div>
+    <div class="dine-header">Dine Out Locations & Table Booking</div>
+    <div class="locations-container">
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 1.jpg" alt="Caramel Downtown">
+            <div class="location-title">Caramel Downtown</div>
+            <div class="location-desc">123 Main Street, City Center<br>Open: 8am - 10pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Caramel Downtown')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 2.jpg" alt="Caramel Lavender Hill">
+            <div class="location-title">Caramel Lavender Hill</div>
+            <div class="location-desc">789 Lavender Hill, Uptown<br>Open: 9am - 11pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Caramel Lavender Hill')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 3.jpg" alt="Caramel Riverside">
+            <div class="location-title">Caramel Riverside</div>
+            <div class="location-desc">456 Riverside Ave, Near River Park<br>Open: 7am - 9pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Caramel Riverside')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+
+        <!-- Additional Dine-In Locations -->
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 4.jpg" alt="Caramel Heights">
+            <div class="location-title">Caramel Heights</div>
+            <div class="location-desc">555 Heights Blvd, Westside<br>Open: 10am - 10pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Caramel Heights')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 5.jpg" alt="Blueberry Haven">
+            <div class="location-title">Blueberry Haven</div>
+            <div class="location-desc">123 Blueberry Lane, Midtown<br>Open: 7am - 8pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Blueberry Haven')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 6.jpg" alt="World Map Bakery">
+            <div class="location-title">World Map Bakery</div>
+            <div class="location-desc">456 Globe St, Downtown<br>Open: 8am - 10pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'World Map Bakery')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 7.jpg" alt="Caramel Express">
+            <div class="location-title">Caramel Express</div>
+            <div class="location-desc">789 Expressway, Riverside<br>Open: 6am - 6pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Caramel Express')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+        <div class="location-card">
+            <img src="Dine Out/Dine - In image 8.jpg" alt="Sunrise Sweets">
+            <div class="location-title">Sunrise Sweets</div>
+            <div class="location-desc">321 Morning Ave, Eastside<br>Open: 5am - 3pm</div>
+            <form class="booking-form" onsubmit="return bookTable(event, 'Sunrise Sweets')">
+                <label>Name</label>
+                <input type="text" name="name" required>
+                <label>Date</label>
+                <input type="date" name="date" required>
+                <label>Time</label>
+                <input type="time" name="time" required>
+                <label>Guests</label>
+                <select name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+                <button type="submit">Book Table</button>
+                <div class="booking-success" style="display:none;"></div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function bookTable(event, location) {
+            event.preventDefault();
+            var form = event.target;
+            var name = form.name.value;
+            var date = form.date.value;
+            var time = form.time.value;
+            var guests = form.guests.value;
+            var msg = `Thank you, ${name}! Your table at ${location} is booked for ${date} at ${time} for ${guests} guest(s).`;
+            var successDiv = form.querySelector('.booking-success');
+            successDiv.textContent = msg;
+            successDiv.style.display = 'block';
+            form.reset();
+            setTimeout(() => { successDiv.style.display = 'none'; }, 6000);
+            return false;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.getElementById('login-btn');
+            const userDisplay = document.getElementById('user-display');
+            const logoutBtn = document.getElementById('logout-btn');
+            const logoutBtnFixed = document.getElementById('logout-btn-fixed');
+            const username = localStorage.getItem('username');
+            if (username) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userDisplay) {
+                    userDisplay.textContent = "Hi, " + username;
+                    userDisplay.style.display = 'inline-block';
+                }
+                if (logoutBtn) logoutBtn.style.display = 'inline-block';
+                if (logoutBtnFixed) {
+                    logoutBtnFixed.style.display = 'inline-block';
+                    logoutBtnFixed.textContent = 'Logout';
+                }
+            } else {
+                if (userDisplay) userDisplay.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (logoutBtnFixed) {
+                    logoutBtnFixed.style.display = 'inline-block';
+                    logoutBtnFixed.textContent = 'Login';
+                }
+                if (loginBtn) loginBtn.style.display = 'inline-block';
+            }
+            if (logoutBtn) {
+                logoutBtn.onclick = function () {
+                    localStorage.removeItem('username');
+                    window.location.reload();
+                }
+            }
+            if (logoutBtnFixed) {
+                logoutBtnFixed.onclick = function () {
+                    if (logoutBtnFixed.textContent === 'Logout') {
+                        localStorage.removeItem('username');
+                        logoutBtnFixed.textContent = 'Login';
+                        if (userDisplay) userDisplay.style.display = 'none';
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
