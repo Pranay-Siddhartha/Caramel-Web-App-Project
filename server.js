@@ -8,9 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Simple in-memory user (for demo)
 const USERS = [
-  { username: 'Pranay', password: 'password123' },
-  { username: 'user', password: 'testpass' },
-  
+  { username: 'admin', password: 'password' },
 ];
 
 app.use(cors());
