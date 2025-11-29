@@ -20,6 +20,6 @@ cd Caramel-Web-App-Project
 ### 4. Run the server
 node server.js
 
-#### For user authentication in the login page, use :
+#### For user authentication in the login page, use
 Username : admin
 Password : password
