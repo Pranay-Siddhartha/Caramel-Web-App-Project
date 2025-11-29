@@ -1,8 +1,24 @@
-Hello there!
+# Caramel Web App
 
-This is a Frontend Web Development project built using HTML, CSS and JavaScript.
+Caramel is a Node.js-based web application. This README contains all steps required to install, configure, and run the project.
 
-It serves a virtual bakery organisation named "Caramel".
-To run the project efficiently, use 'node server.js' in node.js library.
+## Project Setup (Installation • Navigation • Running • Environment • Scripts • Structure)
 
-Thank you !
+### 1. Prerequisites
+- Node.js v16+
+- npm (included with Node.js)
+- Git (optional)
+
+In the terminal/command ->
+
+### 2. Download/Clone the Project(optional, ignore if the folder is already opened)
+git clone <your-repository-url>
+
+### 3. Navigate to project
+cd Caramel-Web-App-Project
+
+### 4. Install dependencies
+npm install
+
+### 5. Running the Application
+npm run dev
