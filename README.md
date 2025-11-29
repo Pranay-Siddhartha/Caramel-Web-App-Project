@@ -17,7 +17,7 @@ git clone <your-repository-url>
 ### 3. Navigate to project
 cd Caramel-Web-App-Project
 
-### 4. Install dependencies
+### 4. Run the server
 node server.js
 
 
