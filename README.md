@@ -21,5 +21,5 @@ cd Caramel-Web-App-Project
 node server.js
 
 #### For user authentication in the login page, use
-Username : admin
-Password : password
+- Username : admin
+- Password : password
