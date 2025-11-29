@@ -9,7 +9,7 @@ Caramel is a Node.js-based web application. This README contains all steps requi
 - npm (included with Node.js)
 - Git (optional)
 
-In the terminal/command ->
+### In the terminal/command ->
 
 ### 2. Download/Clone the Project(optional, ignore if the folder is already opened)
 git clone <your-repository-url>
@@ -18,7 +18,6 @@ git clone <your-repository-url>
 cd Caramel-Web-App-Project
 
 ### 4. Install dependencies
-npm install
+node server.js
 
-### 5. Running the Application
-npm run dev
+
