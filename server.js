@@ -15,6 +15,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   const user = USERS.find(u => u.username === username && u.password === password);
