@@ -1,6 +1,7 @@
 // Netlify Function for Login logic
 const USERS = [
   { username: 'admin', password: 'password' },
+  { username: 'guest', password: 'guest123' },
 ];
 
 exports.handler = async (event, context) => {
