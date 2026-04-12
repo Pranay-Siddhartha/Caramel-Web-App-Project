@@ -13,7 +13,10 @@ const USERS = [
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname)));
+
+// Serve static files from the root directory
+// This is mainly for local development
+app.use(express.static(path.join(__dirname, '..')));
 
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
@@ -25,6 +28,7 @@ app.post('/api/login', (req, res) => {
   }
 });
 
+// For local development
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
